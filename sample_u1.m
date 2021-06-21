@@ -1,0 +1,9 @@
+function X=sample_u1(P,m)
+r=1;
+n=length(P(:,1));
+X = randn(m,n);
+s2 = sum(X.^2,2);
+X = X.*repmat(r*(gammainc(s2/2,n/2).^(1/n))./sqrt(s2),1,n);
+X=X';
+PP=chol(P)';
+X=PP*X;
